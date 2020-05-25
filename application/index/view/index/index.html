@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./static/bootstrap/bootstrap.min.css">
+
+    <style>
+        #head {
+            height: 179px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <h2>Mcc招新系统</h2>
+        </a>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <form enctype="multipart/form-data">
+                <table class="table table-bordered col-sm">
+                    <tr>
+                        <td class="text-center">照片</td>
+                        <td class="form-group">
+                            <input class="form-control" type="file" name="head">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=" text-center">姓名:</td>
+                        <td class="form-group">
+                            <input type="text" class="text-center form-control" name="name" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=" text-center">性别:</td>
+                        <td class="form-group">
+                            <input type="text" class="text-center form-control" name="sex" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=" text-center">班级:</td>
+                        <td class="form-group">
+                            <input type="text" class="text-center form-control" name="class" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=" text-center">班主任:</td>
+                        <td class="form-group">
+                            <input type="text" class="text-center form-control" name="class_master" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=" text-center">联系电话:</td>
+                        <td class="form-group">
+                            <input type="text" class="text-center form-control" name="phone_number" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=" text-center">兴趣爱好:</td>
+                        <td class="form-group">
+                            <textarea name="interest" id="" cols="50" rows="5"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=" text-center">自我评价:</td>
+                        <td class="form-group">
+                            <textarea name="comment" id="" cols="50" rows="5"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" class="btn btn-large btn-block btn-info">提交</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="bottom"></div>
+    </div>
+    <script src="./static//jquery/jquery.min.js"></script>
+    <script src="./static/layer/layer.js"></script>
+    <script>
+        $('form').submit(function (e) {
+            var res = $(this).serialize();
+            var url = '{:url()}';
+            $.ajax({
+                url: url,
+                data: res,
+                type: 'post',
+                success: function (data) {
+                    if (data.code == 1) {
+                        layer.alert(data.msg, { icon: 6 }, function (index) {
+                            layer.close(index);
+                            location.href = data.url
+                        })
+                    } else {
+                        layer.alert(data.msg, { icon: 5 }, function (index) {
+                            layer.close(index);
+                        })
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
+</body>
+
+</html>
