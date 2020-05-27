@@ -1,53 +1,71 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Mcc Login</title>
+    <meta charset="utf-8">
+    <title>登录</title>
     <style>
-        .login_box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
+        #login {
+            width: 500px;
             height: 300px;
-
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: center;
         }
 
-        .table {
-            position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        #username, #password, #login-btn {
+            width: 300px;
+            height: 50px;
+            margin-top: 20px;
+            text-indent: 20px;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #6e707e;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #d1d3e2;
+            border-radius: 50px;
+            -webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+            outline: none
         }
 
-        td {
-            font-size: 22px;
+        #login-btn {
+            background: #4e73df;
+            color: #fff;
+            text-indent: 0px;
+        }
+
+        #textBox {
+            text-align: center;
+            vertical-align: middel;
+        }
+
+        #logo {
+            width: 70px;
+            display: inline-block;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
-<div class="login_box">
-    <form action="">
-        <table class="table">
-            <tr>
-                <td>帐号:</td>
-                <td><input type="text" name="username" id=""></td>
-            </tr>
-            <tr>
-                <td>密码:</td>
-                <td><input type="password" name="password" id=""></td>
-            </tr>
-            <tr>
-                <td colspan="2"><button type="submit">登录</button></td>
-            </tr>
-        </table>
-    </form>
+<div id="login">
+    <img src="/static/img/logo.png" id="logo">
+    <div id="textBox">
+        <form action="">
+            <input type="text" id="username" name="username" placeholder="请输入账号">
+            <br>
+            <input type="password" id="password" name="password" placeholder="请输入密码">
+            <br>
+            <input type="submit" id="login-btn" value="登录">
+        </form>
+    </div>
 </div>
+</body>
 <script src="/static/static/jquery/jquery.min.js"></script>
 <script src="/static/static/layer/layer.js"></script>
 <script>
@@ -74,5 +92,4 @@
         return false;
     });
 </script>
-</body>
 </html>

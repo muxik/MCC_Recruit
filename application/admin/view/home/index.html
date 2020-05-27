@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title></title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
+    <!-- Bootstrap core CSS     -->
+    <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Animation library for notifications   -->
+    <link href="/static/assets/css/animate.min.css" rel="stylesheet"/>
+    <!--  Paper Dashboard core CSS    -->
+    <link href="/static/assets/css/paper-dashboard.css" rel="stylesheet"/>
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/static/assets/css/demo.css" rel="stylesheet"/>
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="/static/assets/css/themify-icons.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="danger">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    MCC后台管理系统
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="table.html">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Table List</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">学生信息</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">
+                                <i class="ti-user"></i>
+                                <p>{:session('admin.username')}</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ti-arrow-right"></i>
+                                <p id="quit">退出</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-plain">
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <th>#</th>
+                                    <th>照片</th>
+                                    <th>姓名</th>
+                                    <th>年龄</th>
+                                    <th>性别</th>
+                                    <th>班级</th>
+                                    <th>班主任</th>
+                                    <th>兴趣爱好</th>
+                                    <th>自我评价</th>
+                                    <th>提交日期</th>
+                                    <th>操作</th>
+                                    </thead>
+                                    <tbody>
+                                    {volist name="student" id="vo"}
+                                    <tr>
+                                        <td>{$vo.id}</td>
+                                        <td><img src="/uploads/{$vo.pic}" width="116px" alt=""></td>
+                                        <td>{$vo.name}</td>
+                                        <td>{$vo.age}</td>
+                                        <td>{$vo.sex}</td>
+                                        <td>{$vo.class}</td>
+                                        <td>{$vo.class_teacher}</td>
+                                        <td>{$vo.interest}</td>
+                                        <td>{$vo.comment}</td>
+                                        <td>{$vo.create_time}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger delete" dataid="{$vo.id}">删除
+                                            </button>
+<!--                                            <button type="button" class="btn btn-primary edit" dataid="{$vo.id}">修改-->
+<!--                                            </button>-->
+                                        </td>
+                                    </tr>
+                                    {/volist}
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="copyright pull-right">
+                    Copyright &copy; 2020.Company 李桥金 All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+</body>
+
+<!--   Core JS Files   -->
+<script src="/static/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/static/assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="/static/assets/js/bootstrap-checkbox-radio.js"></script>
+
+<!--  Charts Plugin -->
+<script src="/static/assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="/static/assets/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<!---<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>--->
+
+<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+<script src="/static/assets/js/paper-dashboard.js"></script>
+
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="/static/assets/js/demo.js"></script>
+<script src="/static/static/layer/layer.js"></script>
+
+<script>
+    $(function () {
+        $('.delete').click(function (e) {
+            layer.confirm('是否删除?', {icon: 3, title: '是否删除?'}, function (index) {
+                const id = $('.delete').attr('dataid');
+                $.ajax({
+                    url: "{:url('Home/del')}",
+                    data: {id: id},
+                    type: 'post',
+                    success: function (data) {
+                        if (data.code === 1) {
+                            layer.alert(data.msg, {icon: 6}, function (index) {
+                                layer.close(index);
+                                location.href = data.url
+                            })
+                        } else {
+                            layer.alert(data.msg, {icon: 5}, function (index) {
+                                layer.close(index);
+                            })
+                        }
+                    }
+                });
+                layer.close(index);
+            });
+            return false;
+        });
+    });
+    $('#quit').click(function (e) {
+        layer.confirm('是否退出登录?', {icon: 3, title: '{:session("admin.username")}确定要退出登录吗?'}, function (index) {
+            $.ajax({
+                url: "{:url('Home/quit')}",
+                data: {code:1},
+                type: 'post',
+                success: function (data) {
+                    if (data.code === 1) {
+                        layer.alert(data.msg, {icon: 6}, function (index) {
+                            layer.close(index);
+                            location.href = data.url
+                        })
+                    } else {
+                        layer.alert(data.msg, {icon: 5}, function (index) {
+                            layer.close(index);
+                        })
+                    }
+                }
+            });
+            layer.close(index);
+        });
+    });
+</script>
+
+</html>

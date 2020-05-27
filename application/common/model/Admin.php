@@ -8,13 +8,13 @@ class Admin extends Model
 {
     protected $table = "admin";
 
-    public function dologin($date)
+    public function dologin($data)
     {
         $validate = new \app\common\validate\Admin();
-        if (!$validate->check($date)) {
+        if (!$validate->check($data)) {
             return $validate->getError();
         }
-        $result = $this->where($date)->find();
+        $result = $this->where($data)->find();
 
         if ($result) {
             $sessionData = [
