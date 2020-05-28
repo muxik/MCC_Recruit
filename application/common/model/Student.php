@@ -27,8 +27,9 @@ class Student extends Model
 
     public function del($id)
     {
-        $resutl = $this->find($id)->delete();
-        if ($resutl){
+        $studentInfo =  $this->find($id);
+        $result = $studentInfo->delete();
+        if ($result){
             return 1;
         }else {
             return "删除失败，请稍后再试！";

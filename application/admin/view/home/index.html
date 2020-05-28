@@ -110,10 +110,8 @@
                                         <td>{$vo.comment}</td>
                                         <td>{$vo.create_time}</td>
                                         <td>
-                                            <button type="button" class="btn btn-danger delete" dataid="{$vo.id}">删除
+                                            <button type="button" class="btn btn-danger del" sid="{$vo.id}">删除
                                             </button>
-<!--                                            <button type="button" class="btn btn-primary edit" dataid="{$vo.id}">修改-->
-<!--                                            </button>-->
                                         </td>
                                     </tr>
                                     {/volist}
@@ -165,12 +163,11 @@
 
 <script>
     $(function () {
-        $('.delete').click(function (e) {
+        $('.del').click(function (e) {
+            var id = $(this).attr('sid');
             layer.confirm('是否删除?', {icon: 3, title: '是否删除?'}, function (index) {
-                const id = $('.delete').attr('dataid');
                 $.ajax({
-                    url: "{:url('Home/del')}",
-                    data: {id: id},
+                    url: "{:url('Home/del')}?id="+id,
                     type: 'post',
                     success: function (data) {
                         if (data.code === 1) {

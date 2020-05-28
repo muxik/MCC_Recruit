@@ -10,7 +10,7 @@ class Home extends Base
     // 后台主页
     public function index()
     {
-        $this->assign('student', model('Student')->order('id')->select());
+        $this->assign('student', model('Student')->select());
         return view();
     }
 
